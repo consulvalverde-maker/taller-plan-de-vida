@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taller Plan de Vida — Registro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF6EC;
+    --forest:#173C2A;
+    --green:#1F7A4C;
+    --green-bright:#3DAA6C;
+    --red:#DE1C2E;
+    --ink:#16211A;
+    --paper:#FFFFFF;
+    --line:#D8CFB8;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--cream);
+    font-family:'Poppins',sans-serif;
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 0 60px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:linear-gradient(160deg,var(--forest) 0%,var(--green) 100%);
+    padding:44px 28px 40px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    right:-60px; top:-60px;
+    width:220px;height:220px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.05);
+  }
+  .brand-row{
+    display:flex;align-items:center;gap:10px;
+    margin-bottom:26px;
+  }
+  .brand-dot{
+    width:30px;height:30px;border-radius:50%;
+    background:var(--red);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Anton',sans-serif;color:#fff;font-size:15px;
+    flex-shrink:0;
+  }
+  .brand-row span{
+    color:rgba(255,255,255,0.85);
+    font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;
+    font-weight:600;
+  }
+  .ribbon{
+    display:inline-block;
+    background:var(--red);
+    color:#fff;
+    font-family:'Anton',sans-serif;
+    font-size:14px;
+    letter-spacing:.14em;
+    padding:6px 16px;
+    transform:rotate(-2deg);
+    margin-bottom:14px;
+  }
+  .hero h1{
+    font-family:'Anton',sans-serif;
+    font-weight:400;
+    color:#fff;
+    font-size:clamp(38px,8vw,58px);
+    line-height:0.98;
+    margin:0 0 16px;
+    letter-spacing:.01em;
+  }
+  .hero p.tag{
+    color:rgba(255,255,255,0.88);
+    font-style:italic;
+    font-weight:500;
+    font-size:15px;
+    max-width:44ch;
+    line-height:1.5;
+    margin:0 0 22px;
+  }
+  .facts{
+    display:flex;flex-wrap:wrap;gap:10px;
+  }
+  .fact{
+    background:rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.25);
+    color:#fff;
+    font-size:12.5px;
+    font-weight:600;
+    padding:7px 12px;
+    border-radius:20px;
+    display:flex;align-items:center;gap:6px;
+  }
+
+  /* ---------- ENTRY TICKET / AGE BOX ---------- */
+  .ticket{
+    margin:-26px 28px 0;
+    position:relative;
+    background:var(--paper);
+    border:2px dashed var(--red);
+    border-radius:10px;
+    padding:16px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    box-shadow:0 10px 24px rgba(23,60,42,0.14);
+  }
+  .ticket .label{
+    font-family:'Anton',sans-serif;
+    font-size:15px;
+    color:var(--forest);
+    letter-spacing:.02em;
+  }
+  .ticket .sub{
+    font-size:12px;color:#6b6455;font-weight:500;
+  }
+  .ticket .check{
+    font-size:22px;
+  }
+
+  /* ---------- FORM CARD ---------- */
+  .card{
+    background:var(--paper);
+    margin:26px 28px 0;
+    border-radius:14px;
+    padding:8px 26px 30px;
+    box-shadow:0 4px 20px rgba(23,60,42,0.06);
+  }
+  .step{
+    display:flex;align-items:center;gap:10px;
+    margin:26px 0 14px;
+  }
+  .step:first-of-type{margin-top:24px;}
+  .step .num{
+    font-family:'Anton',sans-serif;
+    color:var(--paper);
+    background:var(--green);
+    width:26px;height:26px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;
+    flex-shrink:0;
+  }
+  .step .txt{
+    font-family:'Anton',sans-serif;
+    font-size:13.5px;
+    letter-spacing:.05em;
+    color:var(--forest);
+    text-transform:uppercase;
+  }
+
+  label{
+    display:block;
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink);
+    margin:16px 0 6px;
+  }
+  label .req{color:var(--red);}
+  label .opt{color:#9a927e;font-weight:500;font-style:italic;}
+
+  input[type=text], input[type=email], input[type=tel], input[type=number], select, textarea{
+    width:100%;
+    font-family:'Poppins',sans-serif;
+    font-size:14.5px;
+    padding:12px 13px;
+    border-radius:9px;
+    border:1.5px solid var(--line);
+    background:#FDFBF6;
+    color:var(--ink);
+    outline:none;
+    transition:border-color .15s, box-shadow .15s, background .15s;
+  }
+  textarea{resize:vertical;min-height:76px;line-height:1.5;}
+  input:focus, select:focus, textarea:focus{
+    border-color:var(--green);
+    background:#fff;
+    box-shadow:0 0 0 3px rgba(31,122,76,0.14);
+  }
+  input.err, select.err, textarea.err{
+    border-color:var(--red);
+    box-shadow:0 0 0 3px rgba(222,28,46,0.10);
+  }
+  .hint{font-size:11.5px;color:#9a927e;margin-top:5px;}
+  .errmsg{font-size:12px;color:var(--red);margin-top:5px;font-weight:600;display:none;}
+
+  .choices{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
+  .chip{
+    border:1.5px solid var(--line);
+    background:#FDFBF6;
+    padding:9px 14px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:600;
+    cursor:pointer;
+    color:var(--ink);
+    transition:all .15s;
+    user-select:none;
+  }
+  .chip:hover{border-color:var(--green-bright);}
+  .chip.sel{
+    background:var(--forest);
+    border-color:var(--forest);
+    color:#fff;
+  }
+
+  .bank-box{
+    margin-top:16px;
+    border:1.5px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  .bank-toggle{
+    width:100%;
+    background:#F4EFE1;
+    border:none;
+    padding:13px 15px;
+    display:flex;align-items:center;justify-content:space-between;
+    font-family:'Poppins',sans-serif;
+    font-weight:600;
+    font-size:13.5px;
+    color:var(--forest);
+    cursor:pointer;
+  }
+  .bank-toggle .arrow{transition:transform .2s; font-size:16px;}
+  .bank-toggle.open .arrow{transform:rotate(180deg);}
+  .bank-details{
+    display:none;
+    padding:16px 16px 14px;
+    background:#FDFBF6;
+  }
+  .bank-details.open{display:block;}
+  .bank-row{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:8px 0;
+    border-bottom:1px dashed var(--line);
+    font-size:13px;
+  }
+  .bank-row:last-of-type{border-bottom:none;}
+  .bank-row span{color:#8a8271;font-weight:500;}
+  .bank-row strong{color:var(--ink);font-weight:600;}
+  .bank-note{
+    margin-top:10px;
+    font-size:11.5px;
+    color:#9a927e;
+    line-height:1.5;
+  }
+
+  .pay-info{
+    margin-top:8px;
+    background:#F4EFE1;
+    border-radius:10px;
+    padding:14px 16px;
+    font-size:13px;
+    color:#4a4536;
+    line-height:1.6;
+  }
+  .pay-info strong{color:var(--forest);}
+
+  .consent{
+    display:flex;gap:10px;align-items:flex-start;
+    margin-top:22px;
+    padding:14px;
+    background:#F4EFE1;
+    border-radius:10px;
+  }
+  .consent input{width:18px;height:18px;margin-top:2px;accent-color:var(--green);flex-shrink:0;}
+  .consent label{margin:0;font-size:12.5px;font-weight:500;color:#4a4536;line-height:1.5;}
+
+  .submit-row{margin-top:26px;}
+  button.submit{
+    width:100%;
+    background:var(--red);
+    color:#fff;
+    border:none;
+    font-family:'Anton',sans-serif;
+    font-size:16px;
+    letter-spacing:.03em;
+    padding:16px;
+    border-radius:10px;
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    transition:transform .12s, background .15s;
+  }
+  button.submit:hover{background:#c11526; transform:translateY(-1px);}
+  button.submit:active{transform:translateY(0);}
+  .submit-note{
+    text-align:center;font-size:11.5px;color:#9a927e;margin-top:10px;
+  }
+
+  /* success state */
+  .success{
+    display:none;
+    text-align:center;
+    padding:50px 26px 60px;
+  }
+  .success .mark{
+    width:64px;height:64px;border-radius:50%;
+    background:var(--green);
+    color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:30px;
+    margin:0 auto 18px;
+  }
+  .success h2{
+    font-family:'Anton',sans-serif;
+    color:var(--forest);
+    font-size:26px;
+    margin:0 0 10px;
+  }
+  .success p{color:#57503f;font-size:14px;line-height:1.6;max-width:38ch;margin:0 auto;}
+
+  @media(max-width:480px){
+    .hero{padding:34px 18px 34px;}
+    .ticket, .card{margin-left:16px;margin-right:16px;}
+    .ticket{flex-direction:column;align-items:flex-start;gap:6px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="brand-row">
+      <div class="brand-dot">G</div>
+      <span>Universidad Gestalt</span>
+    </div>
+    <div class="ribbon">TALLER</div>
+    <h1>PLAN DE<br>VIDA</h1>
+    <p class="tag">Para cuando se te acabó el guión de qué hacer de tus papás, tus maestros o TikTok. No te damos otro guión — tú escribes el tuyo.</p>
+    <div class="facts">
+      <div class="fact">📍 Auditorio Universidad Gestalt</div>
+      <div class="fact">🗓️ 25 de septiembre · 9 a 5 pm</div>
+      <div class="fact">🎟️ Inversión $900 MXN</div>
+    </div>
+  </div>
+
+  <div class="ticket">
+    <div>
+      <div class="label">PARA JÓVENES DE 17 A 25 AÑOS</div>
+    </div>
+    <div class="check">🎫</div>
+  </div>
+
+  <div class="card" id="formCard">
+
+    <div class="step"><div class="num">1</div><div class="txt">Tus datos</div></div>
+
+    <label>Nombre completo <span class="req">*</span></label>
+    <input type="text" id="nombre" placeholder="Ej. Ana Sofía Ramírez López">
+    <div class="errmsg" id="err-nombre">Escribe tu nombre completo.</div>
+
+    <label>Edad <span class="req">*</span></label>
+    <input type="number" id="edad" placeholder="17" min="1" max="99">
+    <div class="hint">Este taller es exclusivo para personas de 17 a 25 años.</div>
+    <div class="errmsg" id="err-edad">Este taller es solo para edades entre 17 y 25 años.</div>
+
+    <label>WhatsApp <span class="req">*</span></label>
+    <input type="tel" id="whats" placeholder="55 1234 5678">
+    <div class="errmsg" id="err-whats">Ingresa un número de WhatsApp válido.</div>
+
+    <label>Correo electrónico <span class="req">*</span></label>
+    <input type="email" id="correo" placeholder="tucorreo@ejemplo.com">
+    <div class="errmsg" id="err-correo">Ingresa un correo válido.</div>
+
+    <div class="step"><div class="num">2</div><div class="txt">Un poco de ti</div></div>
+
+    <label>¿Qué haces actualmente? <span class="req">*</span></label>
+    <div class="choices" data-group="ocupacion">
+      <div class="chip" data-value="Estudio">Estudio</div>
+      <div class="chip" data-value="Trabajo">Trabajo</div>
+      <div class="chip" data-value="Estudio y trabajo">Estudio y trabajo</div>
+      <div class="chip" data-value="Ninguna de las anteriores">Ninguna de las anteriores</div>
+    </div>
+    <div class="errmsg" id="err-ocupacion">Selecciona una opción.</div>
+
+    <label>¿Cómo te enteraste del taller? <span class="req">*</span></label>
+    <div class="choices" data-group="canal">
+      <div class="chip" data-value="Instagram / TikTok">Instagram / TikTok</div>
+      <div class="chip" data-value="Facebook">Facebook</div>
+      <div class="chip" data-value="Un amigo o familiar me contó">Un amigo o familiar me contó</div>
+      <div class="chip" data-value="UPIICSA (Maestros)">UPIICSA (Maestros)</div>
+    </div>
+    <div class="errmsg" id="err-canal">Selecciona una opción.</div>
+
+    <div id="canalDetalleWrap" style="display:none;">
+      <label id="canalDetalleLabel">Especifica <span class="req">*</span></label>
+      <input type="text" id="canalDetalle" placeholder="">
+      <div class="errmsg" id="err-canalDetalle">Este dato es necesario.</div>
+    </div>
+
+    <label>En una frase, ¿qué te gustaría resolver o lograr con tu plan de vida? <span class="req">*</span></label>
+    <textarea id="motivo" placeholder="Ej. Quiero tener más claridad sobre qué estudiar y hacia dónde ir."></textarea>
+    <div class="errmsg" id="err-motivo">Cuéntanos brevemente qué te trae al taller.</div>
+
+    <div class="step"><div class="num">3</div><div class="txt">Confirma tu lugar</div></div>
+
+    <div class="bank-box" id="bankBox">
+      <button type="button" class="bank-toggle" id="bankToggle">
+        <span>🏦 Ver datos para transferencia</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="bank-details" id="bankDetails">
+        <div class="bank-row"><span>Banco</span><strong>BBVA Bancomer</strong></div>
+        <div class="bank-row"><span>Cuenta</span><strong>153 878 1948</strong></div>
+        <div class="bank-row"><span>CLABE</span><strong>012180015387819480</strong></div>
+        <div class="bank-row"><span>A nombre de</span><strong>Ivan</strong></div>
+        <div class="bank-row"><span>Concepto</span><strong>Taller Plan de Vida + tu nombre</strong></div>
+        <div class="bank-note">Envía tu comprobante por WhatsApp al 55 6435 5470 para confirmar tu lugar.</div>
+      </div>
+    </div>
+
+    <label>Inversión: $900 MXN</label>
+    <div class="pay-info">
+      ✉️ Una vez realizada tu transferencia, envía tu comprobante a <strong>consulvalverde@gmail.com</strong> junto con tu <strong>nombre completo</strong> y tu <strong>WhatsApp</strong> para confirmar tu lugar.
+    </div>
+
+    <div class="consent">
+      <input type="checkbox" id="consiento">
+      <label for="consiento">Acepto ser contactado(a) por WhatsApp o correo para confirmar mi lugar en el Taller Plan de Vida.</label>
+    </div>
+    <div class="errmsg" id="err-consiento">Necesitamos tu autorización para poder contactarte.</div>
+
+    <div class="submit-row">
+      <button class="submit" id="btnSubmit" type="button">
+        RESERVAR MI LUGAR →
+      </button>
+      <div class="submit-note">Tu registro se guarda directo en la base de datos del taller.</div>
+    </div>
+
+  </div>
+
+  <div class="success" id="successCard">
+    <div class="mark">✓</div>
+    <h2>¡Listo, tu registro quedó guardado!</h2>
+    <p>Tu información ya fue registrada. No olvides enviar tu comprobante de pago a <strong>consulvalverde@gmail.com</strong> con tu nombre completo y WhatsApp para confirmar tu lugar.</p>
+  </div>
+
+</div>
+
+<script>
+  // 👉 PEGA AQUÍ LA URL DE TU APPS SCRIPT (termina en /exec) cuando la tengas lista
+  const SHEET_URL = "https://script.google.com/macros/s/AKfycbzzwoQGohq-n6fDFTW67mnygMNBP7PItL7EMH7DQMcpgCii7n8FyEkYnK8mJUF4fbrjRQ/exec";
+
+  document.getElementById('bankToggle').addEventListener('click', () => {
+    document.getElementById('bankToggle').classList.toggle('open');
+    document.getElementById('bankDetails').classList.toggle('open');
+  });
+
+  const canalDetalleText = {
+    "Instagram / TikTok": "¿De qué cuenta o publicación te enteraste?",
+    "Facebook": "¿De quién o qué página de Facebook?",
+    "Un amigo o familiar me contó": "¿De quién? (nombre)",
+    "UPIICSA (Maestros)": "¿De qué maestro?"
+  };
+
+  const chipsGroups = document.querySelectorAll('.choices');
+  const selections = {};
+
+  chipsGroups.forEach(group => {
+    const key = group.dataset.group;
+    selections[key] = "";
+    group.querySelectorAll('.chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        group.querySelectorAll('.chip').forEach(c => c.classList.remove('sel'));
+        chip.classList.add('sel');
+        selections[key] = chip.dataset.value;
+        document.getElementById('err-' + key).style.display = 'none';
+
+        if(key === 'canal'){
+          document.getElementById('canalDetalleWrap').style.display = 'block';
+          document.getElementById('canalDetalleLabel').innerHTML = canalDetalleText[chip.dataset.value] + ' <span class="req">*</span>';
+          document.getElementById('canalDetalle').value = '';
+          document.getElementById('canalDetalle').placeholder = canalDetalleText[chip.dataset.value];
+          document.getElementById('err-canalDetalle').style.display = 'none';
+        }
+      });
+    });
+  });
+
+  function showErr(id, show){
+    const el = document.getElementById('err-' + id);
+    if(el) el.style.display = show ? 'block' : 'none';
+    const field = document.getElementById(id);
+    if(field) field.classList.toggle('err', show);
+  }
+
+  const btn = document.getElementById('btnSubmit');
+
+  btn.addEventListener('click', async () => {
+    let valid = true;
+
+    const nombre = document.getElementById('nombre').value.trim();
+    if(nombre.length < 3){ showErr('nombre', true); valid = false; } else showErr('nombre', false);
+
+    const edad = parseInt(document.getElementById('edad').value, 10);
+    if(isNaN(edad) || edad < 17 || edad > 25){ showErr('edad', true); valid = false; } else showErr('edad', false);
+
+    const whats = document.getElementById('whats').value.trim();
+    if(whats.replace(/\D/g,'').length < 10){ showErr('whats', true); valid = false; } else showErr('whats', false);
+
+    const correo = document.getElementById('correo').value.trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)){ showErr('correo', true); valid = false; } else showErr('correo', false);
+
+    if(!selections['ocupacion']){ document.getElementById('err-ocupacion').style.display='block'; valid = false; } else document.getElementById('err-ocupacion').style.display='none';
+
+    if(!selections['canal']){ document.getElementById('err-canal').style.display='block'; valid = false; } else document.getElementById('err-canal').style.display='none';
+
+    const canalDetalle = document.getElementById('canalDetalle').value.trim();
+    if(selections['canal'] && canalDetalle.length < 2){ document.getElementById('err-canalDetalle').style.display='block'; valid = false; } else document.getElementById('err-canalDetalle').style.display='none';
+
+    const motivo = document.getElementById('motivo').value.trim();
+    if(motivo.length < 5){ showErr('motivo', true); valid = false; } else showErr('motivo', false);
+
+    const consiento = document.getElementById('consiento').checked;
+    document.getElementById('err-consiento').style.display = consiento ? 'none' : 'block';
+    if(!consiento) valid = false;
+
+    if(!valid){
+      const firstErr = document.querySelector('.err, .errmsg[style*="block"]');
+      if(firstErr) firstErr.scrollIntoView({behavior:'smooth', block:'center'});
+      return;
+    }
+
+    const entryData = {
+      nombre, edad, whats, correo,
+      ocupacion: selections['ocupacion'],
+      canal: selections['canal'],
+      canalDetalle,
+      motivo,
+      fecha: new Date().toISOString()
+    };
+
+    btn.disabled = true;
+    btn.textContent = "ENVIANDO...";
+
+    try{
+      await fetch(SHEET_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(entryData)
+      });
+    }catch(e){
+      console.error("No se pudo enviar a Google Sheets", e);
+    }
+
+    document.getElementById('formCard').style.display = 'none';
+    document.getElementById('successCard').style.display = 'block';
+  });
+</script>
+
+</body>
+</html>
